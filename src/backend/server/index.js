@@ -34,6 +34,6 @@ app.get('*',function(req,res){
     res.sendFile(path.resolve(__dirname, '../../../public/', 'index.html'));
 });
 
-app.listen(port, ()=> console.log('Server COSMETOLOG 48 on ' + port));
+app.listen(port, ()=> console.log('Server COSMETOLOG48 on ' + port));
 
 module.exports = app;

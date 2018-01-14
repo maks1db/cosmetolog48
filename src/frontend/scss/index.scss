@@ -22,3 +22,70 @@
 //     text-decoration: none !important;
 //     outline: none !important;
 // }
+.item.active{
+    animation: show ease-in-out .6s;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.image-gallery-image {
+    text-align: center;
+    width:100%;
+    img { 
+        width: 40%;
+    }
+}
+
+.contact {
+    height: 5em;
+    margin: 1em;
+    i {
+        font-size: 50px;
+        width: 50px;
+        text-align: center;
+        color: #31A3DD;
+        float: left;
+        margin-right: 10px;
+    }
+  }
+  .contact:hover img {
+    transition: box-shadow linear 0.3s;
+    box-shadow: none;
+  }
+  .contact img {
+    transition: box-shadow linear 0.1s;
+    padding: .5em;
+    float: left;
+    margin-right: 1em;
+  }
+  .contact .contact-data {
+    //display: inline;
+    display: flex;
+    
+  }
+  .contact .contact-data label {
+    display: flex !important;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 7px;
+    font-size: 16px;
+    font-weight: normal;
+    height: 50px;
+  }
+  .company {
+    height: 32px;
+  }
+  @media (max-width: 992px) {
+    .company {
+      padding-left: 14px;
+      height: auto;
+    }
+  }
