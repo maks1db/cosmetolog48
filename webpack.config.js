@@ -130,7 +130,7 @@ module.exports = {
             loader: 'file-loader?name=[path][name].[ext]'
         },
         {
-            test: /\.(png)?$/,
+            test: /\.(png|gif)?$/,
             loader: 'file-loader?name=[path][name].[ext]'
         }
         ]

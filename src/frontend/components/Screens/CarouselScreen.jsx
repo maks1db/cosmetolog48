@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import classname from 'helpers/classname';
+import Slider from 'nuka-carousel';
 
 class Item extends PureComponent {
 
@@ -40,6 +41,39 @@ class Item extends PureComponent {
         );
     }
 }
+
+const style = {
+    position: 'static',
+    transform: 'none',
+    cursor: 'pointer'
+};
+
+const decorators = (event) => [
+    {
+        position: 'CenterLeft',
+        component: () => (
+            <a 
+                className="left carousel-control"  
+                onClick={() => event(-1)} 
+            >
+                <span className="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        ),
+        style
+    },
+    {
+        position: 'CenterRight',
+        component: () => (
+            <a 
+                className="right carousel-control"
+                onClick={() => event(1)}
+            >
+                <span className="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        ),
+        style
+    }
+];
 const INTERVAL = 9000;
 
 export default class CarouselScreen extends PureComponent {
@@ -51,10 +85,10 @@ export default class CarouselScreen extends PureComponent {
         };
     }
 
-    onChangeSlide = (count = 1) => {
+    onChangeSlide = (duration = 1) => {
         const {activeSlide} = this.state;
 
-        let slide = activeSlide + count;
+        let slide = activeSlide + duration;
 
         if (slide > 3) {
             slide = 1;
@@ -68,24 +102,10 @@ export default class CarouselScreen extends PureComponent {
         });
     }
 
-    onClickChangeSlide = (count) => {
-        clearInterval(this.interval);
-        this.onChangeSlide(count);
-        this.interval = setInterval(this.onChangeSlide, INTERVAL);
-    }
-
     onSetSlide = (number) => {
-        clearInterval(this.interval);
         this.setState({
             activeSlide: number
-        });
-        this.interval = setInterval(this.onChangeSlide, INTERVAL);   
-    }
-
-    componentDidMount() {
-        this.interval = setInterval(() => {
-            this.onChangeSlide(1);
-        }, INTERVAL);     
+        });  
     }
 
     render() {
@@ -95,48 +115,37 @@ export default class CarouselScreen extends PureComponent {
         return (
             <div className="carousel slide">
                 <div className="carousel-inner">
-                    <Item 
-                        active={activeSlide === 1}
-                        img="http://косметолог48.рф/wp-content/uploads/2016/10/1.jpg"
-                        href="/#contacts"
-                        hrefText="Запись на приём +7 (960) 152-14-22"
+                    <Slider 
+                        afterSlide={(slide) => this.setState({activeSlide: slide})}
+                        decorators={decorators(this.onChangeSlide)}
+                        autoplay={true}
+                        autoplayInterval={INTERVAL}
                     >
-                        Есть вопросы? Просто позвоните!
-                    </Item> 
-                    <Item 
-                        active={activeSlide === 2}
-                        img="http://косметолог48.рф/wp-content/uploads/2016/10/3.jpg"
-                        href="/#services"
-                        hrefText="Оромный перечень оказываемых улуг"
-                    >
-                        Беспокоят родинки? Это ко мне.
-                    </Item>
-                    <Item 
-                        active={activeSlide === 3}
-                        img="http://косметолог48.рф/wp-content/uploads/2016/10/2.jpg"
-                        href="/#contacts"
-                        hrefText="Узнай подробности, звони +7 (960) 152-14-22"
-                    >
-                        Уникальные услуги и самые современные методы.
-                    </Item>	
-
-                    <ol className="carousel-indicators">
-                        <li onClick={() => this.onSetSlide(1)} {...classname({active: activeSlide === 1})}></li>
-                        <li onClick={() => this.onSetSlide(2)} {...classname({active: activeSlide === 2})}></li>
-                        <li onClick={() => this.onSetSlide(3)} {...classname({active: activeSlide === 3})}></li>
-                    </ol>
-                    <a 
-                        className="left carousel-control"
-                        onClick={() => this.onClickChangeSlide(-1)}    
-                    >
-                        <span className="glyphicon glyphicon-chevron-left"></span>
-                    </a>
-                    <a 
-                        className="right carousel-control"
-                        onClick={() => this.onClickChangeSlide(1)}
-                    >
-                        <span className="glyphicon glyphicon-chevron-right"></span>
-                    </a>
+                        <Item 
+                            active={activeSlide === 0}
+                            img="http://косметолог48.рф/wp-content/uploads/2016/10/1.jpg"
+                            href="/#contacts"
+                            hrefText="Запись на приём +7 (960) 152-14-22"
+                        >
+                    Есть вопросы? Просто позвоните!
+                        </Item> 
+                        <Item 
+                            active={activeSlide === 1}
+                            img="http://косметолог48.рф/wp-content/uploads/2016/10/3.jpg"
+                            href="/#services"
+                            hrefText="Оромный перечень оказываемых улуг"
+                        >
+                    Беспокоят родинки? Это ко мне.
+                        </Item>
+                        <Item 
+                            active={activeSlide === 2}
+                            img="http://косметолог48.рф/wp-content/uploads/2016/10/2.jpg"
+                            href="/#contacts"
+                            hrefText="Узнай подробности, звони +7 (960) 152-14-22"
+                        >
+                    Уникальные услуги и самые современные методы.
+                        </Item>	
+                    </Slider>
                     <div className="enigma_slider_shadow"></div>
                 </div>
             </div>

@@ -6,19 +6,19 @@ const Item = ({title, children}) => (
             {title}
         </div>
         <div className="contact">
-            <i class="fa fa-home" aria-hidden="true"></i>
+            <i className="fa fa-home" aria-hidden="true"></i>
             <div className="contact-data">
                 <label className="vertical">{children[0].props.children}</label>
             </div>
         </div>
         <div className="contact">
-            <i class="fa fa-phone" aria-hidden="true"></i>
+            <i className="fa fa-phone" aria-hidden="true"></i>
             <div className="contact-data">
                 <label className="vertical">{children[1].props.children}</label>
             </div>
         </div>
         <div className="contact">
-            <i class="fa fa-mobile" aria-hidden="true"></i>
+            <i className="fa fa-mobile" aria-hidden="true"></i>
             <div className="contact-data">
                 <label className="vertical">{children[2].props.children}</label>
             </div>

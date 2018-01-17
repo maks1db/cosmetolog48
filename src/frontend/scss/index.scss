@@ -22,18 +22,6 @@
 //     text-decoration: none !important;
 //     outline: none !important;
 // }
-.item.active{
-    animation: show ease-in-out .6s;
-}
-
-@keyframes show {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
 .image-gallery-image {
     text-align: center;
