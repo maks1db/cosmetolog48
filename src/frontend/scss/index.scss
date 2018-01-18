@@ -30,7 +30,30 @@
         width: 40%;
     }
 }
-
+.slider-decorator-0, .slider-decorator-1 {
+  transform: none !important;
+}
+.carousel-indicators {
+    position: unset;
+    bottom: unset;
+    left: unset;
+    margin-left: unset;
+    width: unset;
+    li {
+        margin: 0 10px 0 0 !important;
+        width: 19px;
+        height: 19px; 
+    }
+}
+.to-top {
+  & > div {
+      z-index: 10 !important;
+      background-color: rgba(0,0,0,.5) !important;
+  }
+}
+.facebook {
+    margin-right: 8px !important;
+}
 .contact {
     height: 5em;
     margin: 1em;

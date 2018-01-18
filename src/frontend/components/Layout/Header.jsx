@@ -13,7 +13,7 @@ export default class Header extends PureComponent {
 
         return (
             <div className="header_section">
-		        <div className="container">
+                <div className="container">
                     <div className="row ">
                         <div className="col-md-6 col-sm-12 wl_rtl">					
                             <div className="logo">						

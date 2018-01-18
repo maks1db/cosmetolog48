@@ -44,17 +44,18 @@ class Item extends PureComponent {
 
 const style = {
     position: 'static',
-    transform: 'none',
-    cursor: 'pointer'
+    transform: 'translateY(0)',
+    cursor: 'pointer',
+    top: 0,
 };
 
-const decorators = (event) => [
+const decorators = () => [
     {
         position: 'CenterLeft',
-        component: () => (
+        component: ( { previousSlide }) => (
             <a 
                 className="left carousel-control"  
-                onClick={() => event(-1)} 
+                onClick={previousSlide} 
             >
                 <span className="glyphicon glyphicon-chevron-left"></span>
             </a>
@@ -63,15 +64,25 @@ const decorators = (event) => [
     },
     {
         position: 'CenterRight',
-        component: () => (
+        component: ( {nextSlide} ) => (
             <a 
                 className="right carousel-control"
-                onClick={() => event(1)}
+                onClick={nextSlide}
             >
                 <span className="glyphicon glyphicon-chevron-right"></span>
             </a>
         ),
         style
+    },
+    {
+        position: 'BottomCenter',
+        component: ( {goToSlide, currentSlide} ) => (
+            <ol className="carousel-indicators">		
+                <li onClick={() => goToSlide(0)} {...classname({active: currentSlide === 0})}></li>		
+                <li onClick={() => goToSlide(1)} {...classname({active: currentSlide === 1})}></li>		
+                <li onClick={() => goToSlide(2)} {...classname({active: currentSlide === 2})}></li>		
+            </ol>
+        )
     }
 ];
 const INTERVAL = 9000;
@@ -113,13 +124,16 @@ export default class CarouselScreen extends PureComponent {
         const { activeSlide } = this.state;
 
         return (
-            <div className="carousel slide">
+            <div className="carousel slide" id="main">
                 <div className="carousel-inner">
                     <Slider 
                         afterSlide={(slide) => this.setState({activeSlide: slide})}
                         decorators={decorators(this.onChangeSlide)}
                         autoplay={true}
                         autoplayInterval={INTERVAL}
+                        wrapAround={true}
+                        speed={1000}
+                        easing="ease-in-out"
                     >
                         <Item 
                             active={activeSlide === 0}
