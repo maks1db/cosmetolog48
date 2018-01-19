@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-Sitemap: http://вологодскийлес48.рф/sitemap.xml
-Host: http://вологодскийлес48.рф
+Host: http://косметолог48.рф

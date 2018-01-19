@@ -38,7 +38,7 @@ else {
     });
 
     JspVars
-        .replace('${link-path}', `<link async rel="stylesheet" href="${publicPath}/css/styles.min.css?v=${version}">`);
+        .replace('${link-path}', '');
 }
 
 JspVars.replace('${js-path}', publicPath + '/js/');
@@ -51,29 +51,29 @@ const plugins = [
             DEV: isDevelopment
         }
     }),
-    // new BundleAnalyzerPlugin({
-    //     analyzerMode: 'static'
-    // })
+    new BundleAnalyzerPlugin({
+        analyzerMode: 'static'
+    })
 ];
 
 let entry = [],
     sassLoader = {};
 
 if (!isDevelopment) {
-    plugins.push(new uglifyPlugin({
-        sourceMap: false,
-        output: {comments: false}
-    }));
-    plugins.push(new ExtractTextPlugin(`/css/styles.min.css?v=${version}`));
+    // plugins.push(new uglifyPlugin({
+    //     sourceMap: false,
+    //     output: {comments: false}
+    // }));
+    // plugins.push(new ExtractTextPlugin(`/css/styles.min.css?v=${version}`));
 
-    sassLoader = {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract( {
-            fallback: 'style-loader', 
-            use: 'css-loader!postcss-loader!sass-loader',
-            publicPath: '/assets/' 
-        } )
-    }; 
+    // sassLoader = {
+    //     test: /\.scss$/,
+    //     loader: ExtractTextPlugin.extract( {
+    //         fallback: 'style-loader', 
+    //         use: 'css-loader!postcss-loader!sass-loader',
+    //         publicPath: '/assets/' 
+    //     } )
+    // }; 
 
     //add polyffils
     entry.push('babel-polyfill');
@@ -84,13 +84,14 @@ else {
     plugins.push(new webpack.NamedModulesPlugin());
     plugins.push(new webpack.HotModuleReplacementPlugin());
 
-    sassLoader = { 
-        test: /\.scss$/, 
-        use: ['style-loader', 
-            'css-loader?source-map',
-            'sass-loader'] 
-    };
+    
 }
+sassLoader = { 
+    test: /\.scss$/, 
+    use: ['style-loader', 
+        'css-loader?source-map',
+        'sass-loader'] 
+};
 
 entry.push('./src/frontend/index.jsx');
 

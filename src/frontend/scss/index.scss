@@ -34,11 +34,11 @@
   transform: none !important;
 }
 .carousel-indicators {
-    position: unset;
-    bottom: unset;
-    left: unset;
-    margin-left: unset;
-    width: unset;
+    position: unset !important;
+    bottom: unset !important;
+    left: unset !important;
+    margin-left: unset !important;
+    width: unset !important;
     li {
         margin: 0 10px 0 0 !important;
         width: 19px;

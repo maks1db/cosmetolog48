@@ -15,6 +15,7 @@ import 'scss/theme.scss';
 import 'scss/style.scss';
 import 'scss/media.scss';
 
+
 const store = configureStore(history);
 
 const render = Component => {
