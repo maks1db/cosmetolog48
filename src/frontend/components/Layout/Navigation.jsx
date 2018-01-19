@@ -3,29 +3,27 @@ import classname from 'helpers/classname';
 import scrollTo from 'helpers/scrollTo';
 import ToTop from 'react-scroll-top';
 
-const Item = ({href, children, activeMenu}) => (
-    <li 
-        {...classname({
-            active: activeMenu === href, 
-            'current-menu-item': activeMenu === href  
-        }, 'menu-item menu-item-type-custom menu-item-object-custom')}  
-        onClick={(e) => {
-            e.preventDefault();
-            if(history.pushState) {
-                history.pushState(null, null, href);
-            }
-            else {
-                location.hash = href;
-            }
-            scrollTo(href);
-        }}
-        title={children}
-    >
-        <a href={href}>
-            {children}
-        </a>
-    </li>
-);
+class Item extends PureComponent {
+    render() {
+        const {hash, children, activeMenu} = this.props;
+        console.log(hash);
+        return (
+            <li 
+                {...classname({
+                    active: activeMenu === hash, 
+                    'current-menu-item': activeMenu === hash  
+                }, 'menu-item menu-item-type-custom menu-item-object-custom')}   
+                title={children}
+            >
+                <a 
+                    href={hash}
+                >
+                    {children}
+                </a>
+            </li>
+        );
+    }
+}
 
 export default class Navigation extends PureComponent {
 
@@ -40,11 +38,11 @@ export default class Navigation extends PureComponent {
 
     componentDidMount() {
         const items = [
-            '#main',
-            '#service',
-            '#about',
-            '#certificates',
-            '#contacts'
+            {key: '#main', value: 400},
+            {key: '#service', value: 300},
+            {key: '#about', value: 500},
+            {key: '#certificates', value: 800},
+            {key: '#contacts', value: 1000}
         ];
 
         window.addEventListener('scroll', () => {
@@ -66,10 +64,10 @@ export default class Navigation extends PureComponent {
             items.forEach((item) => {
 
                 if (loopBreak) return;
-                const element = document.querySelector(item);
-                if (element && element.offsetTop + 200 > scroll) {
+                const element = document.querySelector(item.key);
+                if (element && element.offsetTop + item.value  > scroll) {
                     this.setState({
-                        activeMenu: item  
+                        activeMenu: item.key  
                     });
                     loopBreak = true;
                 }
@@ -88,7 +86,7 @@ export default class Navigation extends PureComponent {
     render() {
 
         const { activeMenu, fixed, menuOpen } = this.state;
-
+        console.log(activeMenu);
         return (
             <div 
                 {...classname({
@@ -120,11 +118,11 @@ export default class Navigation extends PureComponent {
                         >	
                             <div>
                                 <ul className="nav navbar-nav">
-                                    <Item href="#main" activeMenu={activeMenu}>Главная</Item>
-                                    <Item href="#service" activeMenu={activeMenu}>Услуги</Item>
-                                    <Item href="#about" activeMenu={activeMenu}>Обо мне</Item>
-                                    <Item href="#certificates" activeMenu={activeMenu}>Сертификаты</Item>
-                                    <Item href="#contacts" activeMenu={activeMenu}>Контакты</Item>
+                                    <Item hash="#main" activeMenu={activeMenu}>Главная</Item>
+                                    <Item hash="#service" activeMenu={activeMenu}>Услуги</Item>
+                                    <Item hash="#about" activeMenu={activeMenu}>Обо мне</Item>
+                                    <Item hash="#certificates" activeMenu={activeMenu}>Сертификаты</Item>
+                                    <Item hash="#contacts" activeMenu={activeMenu}>Контакты</Item>
                                 </ul>
                             </div>				
                         </div>	

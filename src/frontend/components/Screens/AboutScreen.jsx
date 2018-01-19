@@ -15,9 +15,9 @@ export default class AboutScreen extends PureComponent {
                 </div>	
                 <div className="container">
                     <div className="row isotope">		
-                        <p>
+                        <p className="about">
                             <img 
-                                className="size-medium wp-image-43 alignleft" 
+                                className="size-medium alignleft" 
                                 src="/assets/images/main.jpg" 
                                 alt="Сергей Якушенко" 
                                 width="200" 

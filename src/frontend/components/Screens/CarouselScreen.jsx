@@ -137,7 +137,7 @@ export default class CarouselScreen extends PureComponent {
                     >
                         <Item 
                             active={activeSlide === 0}
-                            img="http://косметолог48.рф/wp-content/uploads/2016/10/1.jpg"
+                            img="/assets/images/img_1.jpg"
                             href="/#contacts"
                             hrefText="Запись на приём +7 (960) 152-14-22"
                         >
@@ -145,7 +145,7 @@ export default class CarouselScreen extends PureComponent {
                         </Item> 
                         <Item 
                             active={activeSlide === 1}
-                            img="http://косметолог48.рф/wp-content/uploads/2016/10/3.jpg"
+                            img="/assets/images/img_3.jpg"
                             href="/#services"
                             hrefText="Оромный перечень оказываемых улуг"
                         >
@@ -153,7 +153,7 @@ export default class CarouselScreen extends PureComponent {
                         </Item>
                         <Item 
                             active={activeSlide === 2}
-                            img="http://косметолог48.рф/wp-content/uploads/2016/10/2.jpg"
+                            img="/assets/images/img_2.jpg"
                             href="/#contacts"
                             hrefText="Узнай подробности, звони +7 (960) 152-14-22"
                         >

@@ -22,7 +22,9 @@
 //     text-decoration: none !important;
 //     outline: none !important;
 // }
-
+#map {
+    height: 600px;
+}
 .image-gallery-image {
     text-align: center;
     width:100%;
@@ -98,5 +100,17 @@
     .company {
       padding-left: 14px;
       height: auto;
+    }
+    .about {
+        padding: 0 16px;
+        text-align: justify;
+        img {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 16px;
+        }
+        .alignleft{
+            float: none;
+        }
     }
   }

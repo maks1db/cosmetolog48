@@ -51,9 +51,9 @@ const plugins = [
             DEV: isDevelopment
         }
     }),
-    new BundleAnalyzerPlugin({
-        analyzerMode: 'static'
-    })
+    // new BundleAnalyzerPlugin({
+    //     analyzerMode: 'static'
+    // })
 ];
 
 let entry = [],

@@ -28,9 +28,11 @@ export default class Main extends Component {
     }
 
     componentDidMount() {
-        if (location.hash) {
-            scrollTo(location.hash);
-        }
+        setTimeout(() => {
+            if (location.hash) {
+                scrollTo(location.hash);
+            }   
+        }, 1000);   
     }
 
     render() {
