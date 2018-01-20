@@ -1,6 +1,6 @@
 {
   "name": "cosmetolog48",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Сайт для крестного сына",
   "main": "index.js",
   "scripts": {
@@ -76,6 +76,18 @@
     "babel-eslint": "^8.1.2",
     "webpack-bundle-analyzer": "^2.9.1",
     "replaceall": "^0.1.6"
+  },
+  "_moduleAliases": {
+    "Controls": "./src/frontend/components/Controls",
+    "Layout": "./src/frontend/components/Layout",
+    "Screens": "./src/frontend/components/Screens",
+    "containers": "./src/frontend/containers",
+    "helpers": "./src/frontend/helpers",
+    "store": "./src/frontend/store",
+    "api": "./src/frontend/api",
+    "reducers": "./src/frontend/reducers",
+    "actions": "./src/frontend/actions",
+    "frontend": "./src/frontend"
   },
   "author": "Skvortsov Maksim",
   "license": "MIT"

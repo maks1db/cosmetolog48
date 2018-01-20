@@ -1,6 +1,5 @@
 node_modules
 public/assets/js/
-.vscode
 .directory
 public/index.html
 public/assets/css

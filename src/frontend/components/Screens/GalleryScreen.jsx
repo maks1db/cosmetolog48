@@ -27,7 +27,7 @@ export default class GalleryScreen extends PureComponent {
 
     render() {
 
-        const { items } = this.props;
+        const { gallery } = this.props;
         const { show } = this.state;
 
         return (
@@ -43,7 +43,7 @@ export default class GalleryScreen extends PureComponent {
                 </div>	
                 <div className="container">
                     { show && <ImageGallery 
-                        items={items} 
+                        items={gallery.items} 
                     /> }
                 </div>
             </div>

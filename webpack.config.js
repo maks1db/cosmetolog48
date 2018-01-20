@@ -21,7 +21,9 @@ const JspVars = new Jsp({
 
 const version = require('./package.json').version;
 
-JspVars.replace('{version}', `${isDevelopment ? '' : version}`);
+JspVars
+    .replace('{version}', `${isDevelopment ? '' : version}`)
+    .replace('${content}', '');
 
 let publicPath = '/assets';
 if (isDevelopment) {

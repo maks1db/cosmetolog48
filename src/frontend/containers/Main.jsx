@@ -5,26 +5,30 @@ import ServiceScreen from 'Screens/ServiceScreen.jsx';
 import AboutScreen from 'Screens/AboutScreen.jsx';
 import GalleryScreen from 'Screens/GalleryScreen.jsx';
 import ContactsScreen from 'Screens/ContactsScreen.jsx';
-import { galleryItems } from 'api';
+import { getGalleryItems as getGalleryItemsAction } from 'actions';
+import { connect } from 'react-redux';
 
+function mapStateToProps(state) {
+    return {
+        gallery: state.app.gallery
+    };
+}
+
+function mapDispatcToProps(dispatch) {
+    return {
+        getGalleryItems: () => dispatch(getGalleryItemsAction())
+    };
+}
+
+@connect(mapStateToProps, mapDispatcToProps)
 export default class Main extends Component {
 
     constructor() {
         super();
-
-        this.state = {
-            galleryItems: []
-        };
     }
 
     componentWillMount() {
-        galleryItems()
-            .then(x => {
-                this.setState({
-                    galleryItems: x.data
-                });
-            });
-            
+        this.props.getGalleryItems();        
     }
 
     componentDidMount() {
@@ -37,14 +41,14 @@ export default class Main extends Component {
 
     render() {
 
-        const { galleryItems } = this.state;
+        const { gallery } = this.props;
         return (
             <div>
                 <CarouselScreen />
                 <ServiceScreen />
                 <AboutScreen />
                 <GalleryScreen 
-                    items={galleryItems}
+                    gallery={ gallery }
                 />
                 <ContactsScreen />
             </div>

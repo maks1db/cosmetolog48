@@ -16,6 +16,10 @@ class Jsp {
         }    
     }
 
+    getText() {
+        return this.text;
+    }
+
     replace(pattern, value) {
         if (typeof pattern === 'string') {
             this.text = replaceAll(pattern, value, this.text);

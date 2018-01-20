@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('../routes');
-
+const renderer = require('./renderer');
 const app = express();  
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,6 +30,7 @@ if (process.env.NODE_ENV === 'dev') {
 const port = 4104;
 
 app.use('', routes);
+app.use('/', renderer);
 app.get('*',function(req,res){
     res.sendFile(path.resolve(__dirname, '../../../public/', 'index.html'));
 });

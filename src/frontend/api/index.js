@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 let API_PREFIX = '';
-if (process.env.DEV){
+if (process.env.DEV || !process.env.BROWSER){
     API_PREFIX = 'http://localhost:4104';
 }
 
@@ -13,4 +13,6 @@ API_PREFIX += '/api/v1';
  */
 export const send = (data) => axios.post(`${API_PREFIX}/request/send`, data);
 
-export const galleryItems = () => axios.get(`${API_PREFIX}/main/galleryItems`);
+export const galleryItems = () => {
+    return axios.get(`${API_PREFIX}/main/galleryItems`);
+};
