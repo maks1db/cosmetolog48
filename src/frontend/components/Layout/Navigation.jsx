@@ -1,12 +1,10 @@
 import React, { PureComponent } from 'react';
 import classname from 'helpers/classname';
-import scrollTo from 'helpers/scrollTo';
 import ToTop from 'react-scroll-top';
 
 class Item extends PureComponent {
     render() {
         const {hash, children, activeMenu} = this.props;
-        console.log(hash);
         return (
             <li 
                 {...classname({
@@ -86,7 +84,6 @@ export default class Navigation extends PureComponent {
     render() {
 
         const { activeMenu, fixed, menuOpen } = this.state;
-        console.log(activeMenu);
         return (
             <div 
                 {...classname({

@@ -5,14 +5,33 @@ export default class GalleryScreen extends PureComponent {
 
     constructor() {
         super();
+
+        this.state = {
+            show: false
+        };
+    }
+
+    onScroll = () => {
+        const scroll = window.scrollY;
+        if (this.item.offsetTop <= scroll + 300) {
+            this.setState({
+                show: true
+            });    
+            window.removeEventListener('scroll', this.onScroll);
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.onScroll);
     }
 
     render() {
 
         const { items } = this.props;
+        const { show } = this.state;
 
         return (
-            <div className="enigma_service" id="certificates">
+            <div className="enigma_service" id="certificates" ref={(e) => this.item = e } >
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-12">
@@ -23,9 +42,9 @@ export default class GalleryScreen extends PureComponent {
                     </div>
                 </div>	
                 <div className="container">
-                    <ImageGallery 
+                    { show && <ImageGallery 
                         items={items} 
-                    />
+                    /> }
                 </div>
             </div>
   
