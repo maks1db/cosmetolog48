@@ -137,7 +137,7 @@ export default class CarouselScreen extends PureComponent {
                     >
                         <Item 
                             active={activeSlide === 0}
-                            img="/assets/images/img_1.jpg"
+                            img="/assets/images/img_1_compress.jpg"
                             href="/#contacts"
                             hrefText="Запись на приём +7 (960) 152-14-22"
                         >
@@ -145,7 +145,7 @@ export default class CarouselScreen extends PureComponent {
                         </Item> 
                         <Item 
                             active={activeSlide === 1}
-                            img="/assets/images/img_3.jpg"
+                            img="/assets/images/img_3_compress.jpg"
                             href="/#services"
                             hrefText="Оромный перечень оказываемых улуг"
                         >
@@ -153,7 +153,7 @@ export default class CarouselScreen extends PureComponent {
                         </Item>
                         <Item 
                             active={activeSlide === 2}
-                            img="/assets/images/img_2.jpg"
+                            img="/assets/images/img_2_compress.jpg"
                             href="/#contacts"
                             hrefText="Узнай подробности, звони +7 (960) 152-14-22"
                         >
