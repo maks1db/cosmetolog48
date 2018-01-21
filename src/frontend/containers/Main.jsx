@@ -28,7 +28,8 @@ export default class Main extends Component {
     }
 
     componentWillMount() {
-        this.props.getGalleryItems();        
+        if (this.props.gallery.items.length === 0)
+            this.props.getGalleryItems();        
     }
 
     componentDidMount() {

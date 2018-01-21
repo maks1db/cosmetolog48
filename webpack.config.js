@@ -23,7 +23,8 @@ const version = require('./package.json').version;
 
 JspVars
     .replace('{version}', `${isDevelopment ? '' : version}`)
-    .replace('${content}', '');
+    .replace('${content}', '')
+    .replace('${initial-state}', '');
 
 let publicPath = '/assets';
 if (isDevelopment) {
@@ -40,7 +41,7 @@ else {
     });
 
     JspVars
-        .replace('${link-path}', '');
+        .replace('${link-path}',`<link rel="stylesheet" href="${publicPath}/css/styles.min.css?v=${version}">`);
 }
 
 JspVars.replace('${js-path}', publicPath + '/js/');
@@ -59,23 +60,33 @@ const plugins = [
 ];
 
 let entry = [],
-    sassLoader = {};
+    sassLoader = {},
+    cssLoader = {};
 
 if (!isDevelopment) {
-    // plugins.push(new uglifyPlugin({
-    //     sourceMap: false,
-    //     output: {comments: false}
-    // }));
-    // plugins.push(new ExtractTextPlugin(`/css/styles.min.css?v=${version}`));
+    plugins.push(new uglifyPlugin({
+        sourceMap: false,
+        output: {comments: false}
+    }));
+    plugins.push(new ExtractTextPlugin(`/css/styles.min.css?v=${version}`));
 
-    // sassLoader = {
-    //     test: /\.scss$/,
-    //     loader: ExtractTextPlugin.extract( {
-    //         fallback: 'style-loader', 
-    //         use: 'css-loader!postcss-loader!sass-loader',
-    //         publicPath: '/assets/' 
-    //     } )
-    // }; 
+    sassLoader = {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract( {
+            fallback: 'style-loader', 
+            use: 'css-loader!sass-loader',
+            publicPath: '/assets/' 
+        } )
+    }; 
+
+    cssLoader = {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: 'css-loader',
+            publicPath: '/assets/' 
+        })
+    };
 
     //add polyffils
     entry.push('babel-polyfill');
@@ -86,14 +97,19 @@ else {
     plugins.push(new webpack.NamedModulesPlugin());
     plugins.push(new webpack.HotModuleReplacementPlugin());
 
-    
+    sassLoader = { 
+        test: /\.scss$/, 
+        use: ['style-loader', 
+            'css-loader?source-map',
+            'sass-loader'] 
+    };
+
+    cssLoader = {
+        test: /\.css$/,
+        use: ['style-loader', 
+            'css-loader?source-map'] 
+    };
 }
-sassLoader = { 
-    test: /\.scss$/, 
-    use: ['style-loader', 
-        'css-loader?source-map',
-        'sass-loader'] 
-};
 
 entry.push('./src/frontend/index.jsx');
 
@@ -124,10 +140,7 @@ module.exports = {
             loader: ['react-hot-loader/webpack', 'babel-loader']
         },
         sassLoader,
-        {
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ]
-        },
+        cssLoader,
         {
             test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
             loader: 'file-loader?name=[path][name].[ext]'

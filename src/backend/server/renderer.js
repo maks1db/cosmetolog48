@@ -4,6 +4,7 @@ import JspReplace from 'frontend/jsp_replace';
 import path from 'path';
 import configureStore from 'store';
 import { Provider } from 'react-redux';
+const { getGalleryItems } = require('actions');
 import App from 'frontend/App.jsx';
 
 module.exports = (req, res) => {
@@ -17,14 +18,21 @@ module.exports = (req, res) => {
 
     JspVars
         .replace('${js-path}', publicPath + '/js/')
-        .replace('${link-path}', '');
+        .replace('${link-path}',`<link rel="stylesheet" href="${publicPath}/css/styles.min.css?v=${version}">`);
 
-    const componentHTML = ReactDOM.renderToString(
-        <Provider store={store}>
-            <App />
-        </Provider>  
-    );   
-
-    JspVars.replace('${content}', componentHTML);
-    res.end(JspVars.getText());
+    store.dispatch(getGalleryItems())
+        .then(() => {
+            const componentHTML = ReactDOM.renderToString(
+                <Provider store={store}>
+                    <App />
+                </Provider>  
+            );   
+        
+            JspVars
+                .replace('${content}', componentHTML)
+                .replace('${initial-state}',
+                    `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`);
+            res.end(JspVars.getText());
+        });
+    
 };

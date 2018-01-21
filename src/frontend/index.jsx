@@ -15,8 +15,8 @@ import 'scss/theme.scss';
 import 'scss/style.scss';
 import 'scss/media.scss';
 
-
-const store = configureStore(history);
+const initialState = window.__INITIAL_STATE__ || {};
+const store = configureStore(initialState);
 
 const render = Component => {
     ReactDOM.render(

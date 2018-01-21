@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 git checkout package-lock.json
-git checkout develop
+git checkout master
 git pull
 npm i
 npm run build

@@ -6,7 +6,7 @@ export const getGalleryItems = () => dispatch => {
         type: constants.GALLERY_REQUEST
     });
 
-    galleryItems()
+    return galleryItems()
         .then(x => {
             dispatch({
                 type: constants.GALLERY_RECEIVE,
