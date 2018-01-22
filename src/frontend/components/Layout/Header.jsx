@@ -18,7 +18,7 @@ export default class Header extends PureComponent {
                         <div className="col-md-6 col-sm-12 wl_rtl">					
                             <div className="logo">						
                                 <a 
-                                    href="http://косметолог48.рф/" 
+                                    href="/" 
                                     title="Косметолог48.рф" 
                                     rel="home">
                                 Косметолог48.рф
