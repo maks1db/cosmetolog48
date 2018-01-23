@@ -1,2 +1,3 @@
 User-agent: *
 Host: http://косметолог48.рф
+Sitemap: http://косметолог48.рф/sitemap.xml
