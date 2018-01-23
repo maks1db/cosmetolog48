@@ -42,13 +42,13 @@ export default class ServiceScreen extends PureComponent {
                             title="Косметологоия"
                             ico="thumbs-up" 
                         >
-                            Врач косметолог в Липецке
+                            Удаление родинок, папиллом, бородавок. Удаление лазером
                         </Item>
                         <Item 
-                            title="Гистологическая диагностика"
+                            title="Процедуры"
                             ico="user-md" 
                         >
-                            Уникальное предложение
+                            Ботокс, омоложение, биоревитализация, пилинг
                         </Item>
                     </div>
                 </div>
