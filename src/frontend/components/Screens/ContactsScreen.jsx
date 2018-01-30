@@ -76,7 +76,7 @@ export default class ContactsScreen extends PureComponent {
                                 title="ГУЗ Областной кожно-венерологический диспансер"
                             >
                                 <div>г.&nbsp;Липецк, ул.&nbsp;Марины&nbsp;Расковой, дом&nbsp;18</div>
-                                <div>8 (4742) 55-63-11, доб.&nbsp;302</div>
+                                <div>8 (4742) 25-10-35</div>
                                 <div>8 (960) 152-14-22</div>
                             </Item> 
                             <Item
